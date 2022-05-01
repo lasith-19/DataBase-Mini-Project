@@ -96,7 +96,7 @@ public class DatabaseIni extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getReadableDatabase();
 
         String Accounts_query = "SELECT * FROM "+Account_table;
-        SQLiteDatabase db1=this.getReadableDatabase();
+        //SQLiteDatabase db1=this.getReadableDatabase();
         Cursor cur = db.rawQuery(Accounts_query,null);
 
         if(cur.moveToFirst()){
@@ -112,8 +112,35 @@ public class DatabaseIni extends SQLiteOpenHelper {
         }
 
         cur.close();
-        db1.close();
+        db.close();
 
         return returnList;
+    }
+
+    public Account get_one_account(String AC_num){
+        Account ret_account;
+
+        SQLiteDatabase db=this.getReadableDatabase();
+        String AccountFetch_query = "SELECT * FROM "+Account_table+" where "+Account_number+"= \''" + AC_num;
+        Cursor cur = db.rawQuery(AccountFetch_query,null);
+
+        if(cur.moveToFirst()){
+            do {
+                String AccountNum = cur.getString(0);
+                String BankName = cur.getString(1);
+                String HolderName = cur.getString(2);
+                double Bal = cur.getDouble(3);
+
+                ret_account = new Account(AccountNum,BankName,HolderName,Bal);
+
+            }while(cur.moveToNext());
+        }else{
+            ret_account=null;
+        }
+
+        cur.close();
+        db.close();
+
+        return ret_account;
     }
 }
