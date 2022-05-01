@@ -1,5 +1,6 @@
 package lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.AccountDAO;
@@ -12,17 +13,21 @@ public class PersistantAccountDAO implements AccountDAO {
 
     private DatabaseIni database;
     public PersistantAccountDAO(DatabaseIni db) {
+
         this.database=db;
     }
 
     @Override
     public List<String> getAccountNumbersList() {
-        return null;
+
+        return database.get_account_numbers();
+
     }
 
     @Override
     public List<Account> getAccountsList() {
-        return null;
+
+        return database.get_accounts();
     }
 
     @Override

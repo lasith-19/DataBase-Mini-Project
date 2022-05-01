@@ -1,5 +1,6 @@
 package lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class PersistantTransactionDAO implements TransactionDAO {
     private DatabaseIni database;
 
     public PersistantTransactionDAO(DatabaseIni db) {
+
         this.database=db;
     }
 
@@ -23,11 +25,13 @@ public class PersistantTransactionDAO implements TransactionDAO {
 
     @Override
     public List<Transaction> getAllTransactionLogs() {
-        return null;
+
+        return new ArrayList<>();
     }
 
     @Override
     public List<Transaction> getPaginatedTransactionLogs(int limit) {
-        return null;
+
+        return new ArrayList<>();
     }
 }
